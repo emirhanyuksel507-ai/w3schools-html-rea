@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W3Schools Tryit Editor - HTML Sandbox</title>
+  <link rel="stylesheet" href="css/w3schools.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .standalone-tryit-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="standalone-tryit-container">
+    <!-- Top Bar -->
+    <div class="tryit-header">
+      <div class="tryit-header-left">
+        <a href="index.html" class="w3-brand" style="color:white; font-size:16px; margin-right:12px;">
+          <div class="w3-brand-logo" style="width:28px; height:28px; font-size:14px;">&lt;&gt;</div>
+          <span>w3schools</span>
+        </a>
+        <button class="btn-run" id="btn-run">▶ Run ❯</button>
+        <span class="tryit-title" id="tryit-title">Tryit Editor (HTML5)</span>
+      </div>
+
+      <div class="tryit-header-controls">
+        <label class="auto-run-label" title="Automatically re-run when typing">
+          <input type="checkbox" id="auto-run-check"> Auto-Run
+        </label>
+        <button class="tryit-ctrl-btn" id="btn-beautify" title="Format HTML code">🪄 Format</button>
+        <select class="tryit-select" id="template-select" title="Choose Starter Template">
+          <option value="basic">Template: Basic HTML5</option>
+          <option value="card">Template: Profile Card</option>
+          <option value="form">Template: Contact Form</option>
+          <option value="table">Template: Data Table</option>
+          <option value="canvas">Template: Canvas Animation</option>
+        </select>
+
+        <button class="tryit-ctrl-btn" id="btn-reset" title="Reset Code">↺ Reset</button>
+        <button class="tryit-ctrl-btn" id="btn-clear" title="Clear Code">✕ Clear</button>
+        <button class="tryit-ctrl-btn" id="btn-orient" title="Toggle Horizontal/Vertical Split">⬌ Orientation</button>
+        <button class="tryit-ctrl-btn" id="btn-console" title="Toggle Console Output">📟 Console</button>
+        <button class="tryit-ctrl-btn" id="btn-download" title="Save HTML file">💾 Download</button>
+        <a href="index.html" class="tryit-ctrl-btn" style="text-decoration:none;">📚 Back to Lessons</a>
+      </div>
+    </div>
+
+    <!-- Quick Tag Toolbar -->
+    <div class="tryit-tag-toolbar" id="tag-toolbar">
+      <span style="font-size:11px; font-weight:700; color:#888; margin-right:4px;">TAGS:</span>
+      <button class="tag-chip" data-tag="h1">&lt;h1&gt;</button>
+      <button class="tag-chip" data-tag="p">&lt;p&gt;</button>
+      <button class="tag-chip" data-tag="a">&lt;a&gt;</button>
+      <button class="tag-chip" data-tag="img" data-self="true">&lt;img&gt;</button>
+      <button class="tag-chip" data-tag="button">&lt;button&gt;</button>
+      <button class="tag-chip" data-tag="div">&lt;div&gt;</button>
+      <button class="tag-chip" data-tag="table">&lt;table&gt;</button>
+      <button class="tag-chip" data-tag="ul">&lt;ul&gt;</button>
+      <button class="tag-chip" data-tag="form">&lt;form&gt;</button>
+      <button class="tag-chip" data-tag="input" data-self="true">&lt;input&gt;</button>
+      <button class="tag-chip" data-tag="style">&lt;style&gt;</button>
+    </div>
+
+    <!-- Workspace -->
+    <div class="tryit-workspace" id="workspace">
+      <!-- Code Pane -->
+      <div class="tryit-pane tryit-pane-code" id="pane-code">
+        <div class="tryit-pane-bar">
+          <span>HTML Source Code</span>
+          <span style="font-weight:normal; font-size:11px;">Shortcuts: Ctrl + Enter to Run, Tab to indent</span>
+        </div>
+        <div class="tryit-code-wrapper">
+          <div class="tryit-line-numbers" id="line-numbers">1<br>2<br>3<br>4<br>5</div>
+          <textarea id="code-area" class="tryit-textarea" spellcheck="false" placeholder="Type HTML code here..."></textarea>
+        </div>
+      </div>
+
+      <!-- Draggable Splitter Handle -->
+      <div class="tryit-resizer" id="resizer" title="Drag to resize panes"></div>
+
+      <!-- Preview Pane -->
+      <div class="tryit-pane tryit-pane-preview" id="pane-preview">
+        <div class="tryit-pane-bar">
+          <span>Live Rendering Result</span>
+          <div class="viewport-btn-group">
+            <span id="screen-size-badge" style="font-weight:normal; font-size:11px; margin-right:6px;">Desktop View</span>
+            <button class="viewport-btn active" data-viewport="desktop">💻 Desktop</button>
+            <button class="viewport-btn" data-viewport="tablet">📱 Tablet</button>
+            <button class="viewport-btn" data-viewport="mobile">📱 Mobile</button>
+          </div>
+        </div>
+        <div class="tryit-iframe-container viewport-desktop" id="iframe-container">
+          <iframe id="preview-frame" class="tryit-iframe" sandbox="allow-scripts allow-modals allow-same-origin allow-forms"></iframe>
+        </div>
+
+        <!-- Console Drawer -->
+        <div class="tryit-console" id="console-drawer">
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px; border-bottom:1px solid #444; padding-bottom:3px;">
+            <strong>Console Log Interceptor</strong>
+            <button id="btn-clear-console" style="background:none; border:none; color:#aaa; cursor:pointer; font-size:11px;">Clear Log</button>
+          </div>
+          <div id="console-output"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/lessons-data.js"></script>
+  <script src="js/tryit.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check query param for custom snippet or lesson
+      const urlParams = new URLSearchParams(window.location.search);
+      const lessonParam = urlParams.get('lesson');
+      let initialCode = TRYIT_TEMPLATES.basic.code;
+
+      if (lessonParam && typeof HTML_CURRICULUM !== 'undefined') {
+        const found = HTML_CURRICULUM.find(l => l.id === lessonParam);
+        if (found) {
+          initialCode = found.codeExample;
+          document.getElementById('tryit-title').innerText = `Tryit Editor: ${found.title}`;
+        }
+      }
+
+      const editor = new TryitEditor({
+        textarea: document.getElementById('code-area'),
+        lineNumbers: document.getElementById('line-numbers'),
+        iframe: document.getElementById('preview-frame'),
+        consoleEl: document.getElementById('console-drawer'),
+        consoleContent: document.getElementById('console-output'),
+        resizer: document.getElementById('resizer'),
+        codePane: document.getElementById('pane-code'),
+        previewPane: document.getElementById('pane-preview'),
+        workspace: document.getElementById('workspace'),
+        viewportContainer: document.getElementById('iframe-container'),
+        initialCode: initialCode
+      });
+
+      // Controls
+      document.getElementById('btn-run').addEventListener('click', () => editor.run());
+      document.getElementById('btn-reset').addEventListener('click', () => editor.reset());
+      document.getElementById('btn-clear').addEventListener('click', () => editor.clear());
+      document.getElementById('btn-download').addEventListener('click', () => editor.download());
+      document.getElementById('btn-orient').addEventListener('click', () => editor.toggleOrientation());
+      document.getElementById('btn-console').addEventListener('click', () => editor.toggleConsole());
+      document.getElementById('btn-beautify').addEventListener('click', () => editor.beautify());
+      document.getElementById('btn-clear-console').addEventListener('click', () => {
+        document.getElementById('console-output').innerHTML = '';
+      });
+
+      // Auto-run toggle
+      const autoRunCheck = document.getElementById('auto-run-check');
+      if (autoRunCheck) {
+        autoRunCheck.addEventListener('change', (e) => {
+          editor.autoRun = e.target.checked;
+        });
+      }
+
+      // Quick Tag Toolbar
+      document.querySelectorAll('#tag-toolbar .tag-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tag = btn.dataset.tag;
+          const isSelf = btn.dataset.self === 'true';
+          if (isSelf) {
+            if (tag === 'img') editor.insertTag('<img src="https://www.w3schools.com/html/img_girl.jpg" alt="Girl in a jacket" width="300">');
+            else if (tag === 'input') editor.insertTag('<input type="text" placeholder="Enter text...">');
+            else editor.insertTag(`<${tag}>`);
+          } else {
+            editor.insertTag(`<${tag}>`, `</${tag}>`);
+          }
+        });
+      });
+
+      // Viewport Switcher
+      document.querySelectorAll('.viewport-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          editor.setViewport(btn.dataset.viewport);
+        });
+      });
+
+      // Template selection
+      document.getElementById('template-select').addEventListener('change', (e) => {
+        const val = e.target.value;
+        if (TRYIT_TEMPLATES[val]) {
+          editor.loadCode(TRYIT_TEMPLATES[val].code, TRYIT_TEMPLATES[val].name);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

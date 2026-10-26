@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W3Schools HTML Tutorial - Reverse Engineered</title>
+  <link rel="stylesheet" href="css/w3schools.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="w3-top-nav">
+    <div class="w3-nav-container">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <button class="w3-mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">☰</button>
+        <a href="index.html" class="w3-brand">
+          <div class="w3-brand-logo">&lt;&gt;</div>
+          <span>w3schools</span>
+        </a>
+      </div>
+
+      <nav>
+        <ul class="w3-nav-links">
+          <li><a href="index.html" class="w3-nav-btn active" id="nav-html-btn">HTML</a></li>
+          <li><button class="w3-nav-btn highlight" id="nav-tryit-btn">⚡ Tryit Editor</button></li>
+          <li><a href="tryit.html" class="w3-nav-btn" id="nav-full-tryit-btn" target="_blank">Full Tryit ↗</a></li>
+        </ul>
+      </nav>
+
+      <div class="w3-nav-right">
+        <!-- Search Box -->
+        <div class="w3-search-box">
+          <span class="w3-search-icon">🔍</span>
+          <input type="text" id="search-input" class="w3-search-input" placeholder="Search HTML topics..." autocomplete="off">
+          <div class="search-results-dropdown" id="search-results"></div>
+        </div>
+
+        <!-- Dark/Light Theme Toggle -->
+        <button class="w3-theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub-navbar Info banner -->
+  <div class="w3-subnav-bar">
+    <div><strong>HTML5 TUTORIAL</strong> - The Language for Building Web Pages</div>
+    <div><span>Reverse-Engineered Clean Room Architecture</span></div>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="w3-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="w3-sidebar" id="w3-sidebar">
+      <div class="w3-sidebar-header">
+        <span>HTML Tutorial</span>
+      </div>
+      <nav class="w3-sidebar-nav" id="sidebar-nav">
+        <!-- Rendered dynamically by app.js -->
+      </nav>
+    </aside>
+
+    <!-- Main Content Reader -->
+    <main class="w3-main-content" id="main-content">
+      <!-- Lesson dynamically injected here -->
+    </main>
+  </div>
+
+  <!-- Tryit Editor Modal Window -->
+  <div class="tryit-modal-overlay" id="tryit-modal">
+    <div class="tryit-window">
+      <!-- Modal Header -->
+      <div class="tryit-header">
+        <div class="tryit-header-left">
+          <button class="btn-run" id="tryit-btn-run">▶ Run ❯</button>
+          <span class="tryit-title" id="tryit-modal-title">Tryit Editor v3.0</span>
+        </div>
+
+        <div class="tryit-header-controls">
+          <label class="auto-run-label" title="Automatically re-run when typing">
+            <input type="checkbox" id="tryit-auto-run"> Auto-Run
+          </label>
+          <button class="tryit-ctrl-btn" id="tryit-btn-beautify" title="Format HTML code">🪄 Format</button>
+          <select class="tryit-select" id="tryit-template-select" title="Choose Starter Template">
+            <option value="basic">Template: Basic HTML5</option>
+            <option value="card">Template: Profile Card</option>
+            <option value="form">Template: Contact Form</option>
+            <option value="table">Template: Data Table</option>
+            <option value="canvas">Template: Canvas Animation</option>
+          </select>
+
+          <button class="tryit-ctrl-btn" id="tryit-btn-reset" title="Reset Code">↺ Reset</button>
+          <button class="tryit-ctrl-btn" id="tryit-btn-clear" title="Clear Code">✕ Clear</button>
+          <button class="tryit-ctrl-btn" id="tryit-btn-orient" title="Toggle Split View">⬌ Split</button>
+          <button class="tryit-ctrl-btn" id="tryit-btn-console" title="Toggle Console">📟 Console</button>
+          <button class="tryit-ctrl-btn" id="tryit-btn-download" title="Download as .html">💾 Save</button>
+          <a href="tryit.html" id="tryit-btn-popout" class="tryit-ctrl-btn" target="_blank" title="Open full-page sandbox" style="text-decoration:none;">↗ Popout</a>
+          <button class="tryit-close-btn" id="tryit-close" title="Close Editor">✕</button>
+        </div>
+      </div>
+
+      <!-- Quick Tag Toolbar -->
+      <div class="tryit-tag-toolbar" id="tryit-tag-toolbar">
+        <span style="font-size:11px; font-weight:700; color:#888; margin-right:4px;">TAGS:</span>
+        <button class="tag-chip" data-tag="h1">&lt;h1&gt;</button>
+        <button class="tag-chip" data-tag="p">&lt;p&gt;</button>
+        <button class="tag-chip" data-tag="a">&lt;a&gt;</button>
+        <button class="tag-chip" data-tag="img" data-self="true">&lt;img&gt;</button>
+        <button class="tag-chip" data-tag="button">&lt;button&gt;</button>
+        <button class="tag-chip" data-tag="div">&lt;div&gt;</button>
+        <button class="tag-chip" data-tag="table">&lt;table&gt;</button>
+        <button class="tag-chip" data-tag="ul">&lt;ul&gt;</button>
+        <button class="tag-chip" data-tag="form">&lt;form&gt;</button>
+        <button class="tag-chip" data-tag="input" data-self="true">&lt;input&gt;</button>
+        <button class="tag-chip" data-tag="style">&lt;style&gt;</button>
+      </div>
+
+      <!-- Split Workspace -->
+      <div class="tryit-workspace" id="tryit-workspace">
+        <!-- Left Code Pane -->
+        <div class="tryit-pane tryit-pane-code" id="tryit-code-pane">
+          <div class="tryit-pane-bar">
+            <span>Source Code (HTML5)</span>
+            <span style="font-weight:normal; font-size:11px;">Ctrl + Enter to Run | Tab to indent</span>
+          </div>
+          <div class="tryit-code-wrapper">
+            <div class="tryit-line-numbers" id="tryit-line-numbers">1<br>2<br>3<br>4<br>5</div>
+            <textarea id="tryit-textarea" class="tryit-textarea" spellcheck="false" placeholder="Write your HTML here..."></textarea>
+          </div>
+        </div>
+
+        <!-- Draggable Resizer -->
+        <div class="tryit-resizer" id="tryit-resizer" title="Drag to resize panes"></div>
+
+        <!-- Right Preview Pane -->
+        <div class="tryit-pane tryit-pane-preview" id="tryit-preview-pane">
+          <div class="tryit-pane-bar">
+            <span>Live Output Preview</span>
+            <div class="viewport-btn-group">
+              <button class="viewport-btn active" data-viewport="desktop">💻 Desktop</button>
+              <button class="viewport-btn" data-viewport="tablet">📱 Tablet</button>
+              <button class="viewport-btn" data-viewport="mobile">📱 Mobile</button>
+            </div>
+          </div>
+          <div class="tryit-iframe-container viewport-desktop" id="tryit-iframe-container">
+            <iframe id="tryit-iframe" class="tryit-iframe" sandbox="allow-scripts allow-modals allow-same-origin allow-forms"></iframe>
+          </div>
+
+          <!-- Console Output Drawer -->
+          <div class="tryit-console" id="tryit-console">
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px; border-bottom:1px solid #444; padding-bottom:3px;">
+              <strong>Developer Console Logs</strong>
+              <button id="tryit-clear-console-btn" style="background:none; border:none; color:#aaa; cursor:pointer; font-size:11px;">Clear Log</button>
+            </div>
+            <div id="tryit-console-content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/lessons-data.js"></script>
+  <script src="js/tryit.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
